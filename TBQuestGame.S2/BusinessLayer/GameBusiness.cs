@@ -49,7 +49,7 @@ namespace TBQuestGame.BusinessLayer
                 _playerSetupView.ShowDialog();
 
                 _player.ExperiencePoints = 0;
-                _player.Health = 0;
+                _player.Health = 100;
                 _player.Lives = 3;
             }
             else

@@ -71,7 +71,8 @@ namespace TBQuestGame.DataLayer
                 Description = "This is level three of the dungeon",
                 Accessible = true,
                 ModifyExperiencePoints = 10,
-                RequiredExperiencePoints = 20
+                RequiredExperiencePoints = 10,
+                ModifyHealth = -10
             };
 
             gameMap.MapLocations[3] = new Location()

@@ -27,7 +27,11 @@ namespace TBQuestGame.Models
         public NPCTitle Title
         {
             get { return _title; }
-            set { _title = value; }
+            set
+            {
+                _title = value;
+                OnPropertyChanged(nameof(Title));
+            }
         }
 
         #endregion
@@ -40,19 +44,42 @@ namespace TBQuestGame.Models
         public int Lives
         {
             get { return _lives; }
-            set { _lives = value; }
+            set
+            {
+                _lives = value;
+                OnPropertyChanged(nameof(Lives));
+            }
         }
 
         public int Health
         {
             get { return _health; }
-            set { _health = value; }
+            set
+            {
+                _health = value;
+                
+                if (_health > 100)
+                {
+                    _health = 100;
+                }
+                else if (_health <= 0)
+                {
+                    _health = 100;
+                    _lives--;
+                }
+
+                OnPropertyChanged(nameof(Health));
+            }
         }
 
         public int ExperiencePoints
         {
             get { return _experiencePoints; }
-            set { _experiencePoints = value; }
+            set
+            {
+                _experiencePoints = value;
+                OnPropertyChanged(nameof(ExperiencePoints));
+            }
         }
 
         public List<Location> LocationsVisited
@@ -60,6 +87,7 @@ namespace TBQuestGame.Models
             get { return _locationsVisited; }
             set { _locationsVisited = value; }
         }
+
 
         #endregion
 
