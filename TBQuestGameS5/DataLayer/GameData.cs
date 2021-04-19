@@ -92,6 +92,10 @@ namespace TBQuestGame.DataLayer
                 GameItems = new ObservableCollection<GameItem>
                 {
                     GameItemById(1001)
+                },
+                Npcs = new ObservableCollection<Npc>()
+                {
+                    NpcById(1002)
                 }
             };
 
@@ -129,7 +133,7 @@ namespace TBQuestGame.DataLayer
                 ModifyExperiencePoints = 5,
                 GameItems = new ObservableCollection<GameItem>
                 {
-                    GameItemById(1004)
+                    GameItemById(1005)
                 }
             };
 
@@ -187,7 +191,7 @@ namespace TBQuestGame.DataLayer
                 ModifyExperiencePoints = 5,
                 GameItems = new ObservableCollection<GameItem>
                 {
-                    GameItemById(1003)
+                    GameItemById(1004)
                 }
             };
 
@@ -202,6 +206,10 @@ namespace TBQuestGame.DataLayer
                 Npcs = new ObservableCollection<Npc>
                 {
                     NpcById(2002)
+                },
+                GameItems = new ObservableCollection<GameItem>
+                {
+                    GameItemById(1006)
                 }
             };
 
@@ -215,7 +223,9 @@ namespace TBQuestGame.DataLayer
                 new Weapon(1001, "Dagger", 5, 10, 25, "The dagger is a lightweight weapon used for basic combat.", 20),
                 new Weapon(1002, "Throwing Spear", 5, 30, 50, "The throwing spear is a long range weapon used for intense combat.", 50),
                 new Health(1003, "Health Pot", 5, 50, 1, "A basic health potion used for health and life regen.", 10),
-                new Idol(1004, "Eagle Crest", 5, "An Eagle Crest that seems like it may be used to unlock something", 10, "You inserted the Eagle Crest into the locked chamber door", Idol.UseActionType.OPENLOCATION)
+                new Health(1004, "Mana Potion", 5, 100, 1, "A stronger health potion used in dire situations.", 20),
+                new Idol(1005, "Eagle Crest", 5, "An Eagle Crest that seems like it may be used to unlock something", 10, "You inserted the Eagle Crest into the locked chamber door", Idol.UseActionType.OPENLOCATION),
+                new Idol(1006, "Hawk Crest", 5, "A Hawk Crest that seems like it may be used to unlock something", 10, "You inserted the Hawk Crest into the locked chamber door", Idol.UseActionType.OPENLOCATION)
             };
         }
 
@@ -264,7 +274,22 @@ namespace TBQuestGame.DataLayer
                         "Looks like you're in a bit of trouble",
                         "The item you need is on level 4 of this dungeon"
                     }
+                },
+
+                new Citizen()
+                {
+                    Id = 1002,
+                    Name = "Sasha",
+                    Job = Character.JobType.Explorer,
+                    Description = "A friendly woman who seems to be exploring the dungeon",
+                    Messages = new List<string>()
+                    {
+                        "These dungeon levels are far too dangerous!",
+                        "You need to find a weapon, there should be something in here."
+                    }
+
                 }
+
             };
         }
 
