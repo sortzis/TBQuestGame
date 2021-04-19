@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace TBQuestGame.Models
 {
@@ -19,6 +20,10 @@ namespace TBQuestGame.Models
         private int _experiencePoints;
         private NPCTitle _title;
         private List<Location> _locationsVisited;
+        private ObservableCollection<GameItem> _inventory;
+        private ObservableCollection<GameItem> _healthObjects;
+        private ObservableCollection<GameItem> _weapons;
+        private ObservableCollection<GameItem> _idols;
 
         #endregion
 
@@ -33,6 +38,7 @@ namespace TBQuestGame.Models
                 OnPropertyChanged(nameof(Title));
             }
         }
+
 
         #endregion
 
@@ -88,6 +94,30 @@ namespace TBQuestGame.Models
             set { _locationsVisited = value; }
         }
 
+        public ObservableCollection<GameItem> Inventory
+        {
+            get { return _inventory; }
+            set { _inventory = value; }
+        }
+
+        public ObservableCollection<GameItem> Weapons
+        {
+            get { return _weapons; }
+            set { _weapons = value; }
+        }
+
+        public ObservableCollection<GameItem> HealthObjects
+        {
+            get { return _healthObjects; }
+            set { _healthObjects = value; }
+        }
+
+        public ObservableCollection<GameItem> Idols
+        {
+            get { return _idols; }
+            set { _idols = value; }
+        }
+
 
         #endregion
 
@@ -96,6 +126,10 @@ namespace TBQuestGame.Models
         public Player()
         {
             _locationsVisited = new List<Location>();
+            _weapons = new ObservableCollection<GameItem>();
+            _healthObjects = new ObservableCollection<GameItem>();
+            _idols = new ObservableCollection<GameItem>();
+            _inventory = new ObservableCollection<GameItem>();
         }
 
         #endregion
@@ -105,6 +139,36 @@ namespace TBQuestGame.Models
         public bool HasVisited(Location location)
         {
             return _locationsVisited.Contains(location);
+        }
+
+        public void UpdateInventoryCategories()
+        {
+            Weapons.Clear();
+            HealthObjects.Clear();
+            Idols.Clear();
+
+            foreach (var gameItem in _inventory)
+            {
+                if (gameItem is Health) HealthObjects.Add(gameItem);
+                if (gameItem is Weapon) Weapons.Add(gameItem);
+                if (gameItem is Idol) Idols.Add(gameItem);
+            }
+        }
+
+        public void AddGameItemToInventory(GameItem selectedGameItem)
+        {
+            if (selectedGameItem != null)
+            {
+                _inventory.Add(selectedGameItem);
+            }
+        }
+
+        public void RemoveGameItemFromInventory(GameItem selectedGameItem)
+        {
+            if (selectedGameItem != null)
+            {
+                _inventory.Remove(selectedGameItem);
+            }
         }
 
         /// <summary>
